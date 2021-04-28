@@ -13,6 +13,15 @@
 		AB21D8BE2632F0FF009B5E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21D8BC2632F0FF009B5E02 /* Main.storyboard */; };
 		AB21D8C02632F100009B5E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB21D8BF2632F100009B5E02 /* Assets.xcassets */; };
 		AB21D8C32632F100009B5E02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21D8C12632F100009B5E02 /* LaunchScreen.storyboard */; };
+		ABFBF755263843BE00F6E54D /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF754263843BE00F6E54D /* LibraryController.swift */; };
+		ABFBF758263843E800F6E54D /* StartPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF757263843E800F6E54D /* StartPageController.swift */; };
+		ABFBF75B2638440C00F6E54D /* ExtrasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF75A2638440C00F6E54D /* ExtrasController.swift */; };
+		ABFBF75E2638504200F6E54D /* PlayerControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF75D2638504200F6E54D /* PlayerControler.swift */; };
+		ABFBF7752639A44800F6E54D /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF7742639A44800F6E54D /* SpeechSynthesizer.swift */; };
+		ABFBF77D2639CE4B00F6E54D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFBF77C2639CE4B00F6E54D /* AudioToolbox.framework */; };
+		ABFBF7812639CFFD00F6E54D /* ParserForEpub.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF7802639CFFD00F6E54D /* ParserForEpub.swift */; };
+		ABFBF7882639D25C00F6E54D /* TextRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF7872639D25C00F6E54D /* TextRenderer.swift */; };
+		ABFBF78B2639D27E00F6E54D /* BookRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF78A2639D27E00F6E54D /* BookRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +33,15 @@
 		AB21D8BF2632F100009B5E02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB21D8C22632F100009B5E02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB21D8C42632F100009B5E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABFBF754263843BE00F6E54D /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryController.swift; sourceTree = "<group>"; };
+		ABFBF757263843E800F6E54D /* StartPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageController.swift; sourceTree = "<group>"; };
+		ABFBF75A2638440C00F6E54D /* ExtrasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtrasController.swift; sourceTree = "<group>"; };
+		ABFBF75D2638504200F6E54D /* PlayerControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControler.swift; sourceTree = "<group>"; };
+		ABFBF7742639A44800F6E54D /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
+		ABFBF77C2639CE4B00F6E54D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		ABFBF7802639CFFD00F6E54D /* ParserForEpub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserForEpub.swift; sourceTree = "<group>"; };
+		ABFBF7872639D25C00F6E54D /* TextRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRenderer.swift; sourceTree = "<group>"; };
+		ABFBF78A2639D27E00F6E54D /* BookRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABFBF77D2639CE4B00F6E54D /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +61,7 @@
 			children = (
 				AB21D8B52632F0FF009B5E02 /* ConvertingTextDataIntoAudioStream */,
 				AB21D8B42632F0FF009B5E02 /* Products */,
+				ABFBF77B2639CE4B00F6E54D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +76,55 @@
 		AB21D8B52632F0FF009B5E02 /* ConvertingTextDataIntoAudioStream */ = {
 			isa = PBXGroup;
 			children = (
-				AB21D8B62632F0FF009B5E02 /* AppDelegate.swift */,
+				AB21D8CD2632F306009B5E02 /* Models */,
+				AB21D8CC2632F2D5009B5E02 /* Controllers */,
+				AB21D8CB2632F1D5009B5E02 /* Suporting files */,
 				AB21D8B82632F0FF009B5E02 /* SceneDelegate.swift */,
-				AB21D8BA2632F0FF009B5E02 /* ViewController.swift */,
 				AB21D8BC2632F0FF009B5E02 /* Main.storyboard */,
-				AB21D8BF2632F100009B5E02 /* Assets.xcassets */,
-				AB21D8C12632F100009B5E02 /* LaunchScreen.storyboard */,
 				AB21D8C42632F100009B5E02 /* Info.plist */,
 			);
 			path = ConvertingTextDataIntoAudioStream;
+			sourceTree = "<group>";
+		};
+		AB21D8CB2632F1D5009B5E02 /* Suporting files */ = {
+			isa = PBXGroup;
+			children = (
+				AB21D8BF2632F100009B5E02 /* Assets.xcassets */,
+				AB21D8C12632F100009B5E02 /* LaunchScreen.storyboard */,
+				AB21D8B62632F0FF009B5E02 /* AppDelegate.swift */,
+			);
+			path = "Suporting files";
+			sourceTree = "<group>";
+		};
+		AB21D8CC2632F2D5009B5E02 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AB21D8BA2632F0FF009B5E02 /* ViewController.swift */,
+				ABFBF754263843BE00F6E54D /* LibraryController.swift */,
+				ABFBF757263843E800F6E54D /* StartPageController.swift */,
+				ABFBF75A2638440C00F6E54D /* ExtrasController.swift */,
+				ABFBF75D2638504200F6E54D /* PlayerControler.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AB21D8CD2632F306009B5E02 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ABFBF7742639A44800F6E54D /* SpeechSynthesizer.swift */,
+				ABFBF7802639CFFD00F6E54D /* ParserForEpub.swift */,
+				ABFBF7872639D25C00F6E54D /* TextRenderer.swift */,
+				ABFBF78A2639D27E00F6E54D /* BookRenderer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ABFBF77B2639CE4B00F6E54D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABFBF77C2639CE4B00F6E54D /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +199,15 @@
 			files = (
 				AB21D8BB2632F0FF009B5E02 /* ViewController.swift in Sources */,
 				AB21D8B72632F0FF009B5E02 /* AppDelegate.swift in Sources */,
+				ABFBF7752639A44800F6E54D /* SpeechSynthesizer.swift in Sources */,
+				ABFBF7882639D25C00F6E54D /* TextRenderer.swift in Sources */,
+				ABFBF75B2638440C00F6E54D /* ExtrasController.swift in Sources */,
+				ABFBF758263843E800F6E54D /* StartPageController.swift in Sources */,
 				AB21D8B92632F0FF009B5E02 /* SceneDelegate.swift in Sources */,
+				ABFBF78B2639D27E00F6E54D /* BookRenderer.swift in Sources */,
+				ABFBF7812639CFFD00F6E54D /* ParserForEpub.swift in Sources */,
+				ABFBF75E2638504200F6E54D /* PlayerControler.swift in Sources */,
+				ABFBF755263843BE00F6E54D /* LibraryController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +354,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ConvertingTextDataIntoAudioStream/ConvertingTextDataIntoAudioStream.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D7BF3SY5ZC;
 				INFOPLIST_FILE = ConvertingTextDataIntoAudioStream/Info.plist;
@@ -305,6 +374,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ConvertingTextDataIntoAudioStream/ConvertingTextDataIntoAudioStream.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D7BF3SY5ZC;
 				INFOPLIST_FILE = ConvertingTextDataIntoAudioStream/Info.plist;
