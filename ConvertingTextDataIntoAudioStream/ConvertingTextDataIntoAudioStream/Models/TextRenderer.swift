@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class TextRender{
+    func renderTextToScreen(text: String, title: String){
+        
+    }
+}

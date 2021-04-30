@@ -13,15 +13,19 @@
 		AB21D8BE2632F0FF009B5E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21D8BC2632F0FF009B5E02 /* Main.storyboard */; };
 		AB21D8C02632F100009B5E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB21D8BF2632F100009B5E02 /* Assets.xcassets */; };
 		AB21D8C32632F100009B5E02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB21D8C12632F100009B5E02 /* LaunchScreen.storyboard */; };
+		AB63AB06263C27E500A98A4F /* LibraryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB63AB05263C27E500A98A4F /* LibraryStoryboard.storyboard */; };
+		AB63AB09263C281B00A98A4F /* ExtrasStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB63AB08263C281B00A98A4F /* ExtrasStoryboard.storyboard */; };
+		AB63AB0C263C285100A98A4F /* PlayerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB63AB0B263C285100A98A4F /* PlayerStoryboard.storyboard */; };
+		AB63AB0F263C2AA600A98A4F /* StartPageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB63AB0E263C2AA600A98A4F /* StartPageStoryboard.storyboard */; };
 		ABFBF755263843BE00F6E54D /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF754263843BE00F6E54D /* LibraryController.swift */; };
 		ABFBF758263843E800F6E54D /* StartPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF757263843E800F6E54D /* StartPageController.swift */; };
 		ABFBF75B2638440C00F6E54D /* ExtrasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF75A2638440C00F6E54D /* ExtrasController.swift */; };
 		ABFBF75E2638504200F6E54D /* PlayerControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF75D2638504200F6E54D /* PlayerControler.swift */; };
 		ABFBF7752639A44800F6E54D /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF7742639A44800F6E54D /* SpeechSynthesizer.swift */; };
 		ABFBF77D2639CE4B00F6E54D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFBF77C2639CE4B00F6E54D /* AudioToolbox.framework */; };
-		ABFBF7812639CFFD00F6E54D /* ParserForEpub.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF7802639CFFD00F6E54D /* ParserForEpub.swift */; };
 		ABFBF7882639D25C00F6E54D /* TextRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF7872639D25C00F6E54D /* TextRenderer.swift */; };
 		ABFBF78B2639D27E00F6E54D /* BookRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF78A2639D27E00F6E54D /* BookRenderer.swift */; };
+		ABFBF7A5263B04F900F6E54D /* TXTParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF7A4263B04F900F6E54D /* TXTParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,15 +37,19 @@
 		AB21D8BF2632F100009B5E02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB21D8C22632F100009B5E02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB21D8C42632F100009B5E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB63AB05263C27E500A98A4F /* LibraryStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LibraryStoryboard.storyboard; sourceTree = "<group>"; };
+		AB63AB08263C281B00A98A4F /* ExtrasStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExtrasStoryboard.storyboard; sourceTree = "<group>"; };
+		AB63AB0B263C285100A98A4F /* PlayerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayerStoryboard.storyboard; sourceTree = "<group>"; };
+		AB63AB0E263C2AA600A98A4F /* StartPageStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartPageStoryboard.storyboard; sourceTree = "<group>"; };
 		ABFBF754263843BE00F6E54D /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryController.swift; sourceTree = "<group>"; };
 		ABFBF757263843E800F6E54D /* StartPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageController.swift; sourceTree = "<group>"; };
 		ABFBF75A2638440C00F6E54D /* ExtrasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtrasController.swift; sourceTree = "<group>"; };
 		ABFBF75D2638504200F6E54D /* PlayerControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControler.swift; sourceTree = "<group>"; };
 		ABFBF7742639A44800F6E54D /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		ABFBF77C2639CE4B00F6E54D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		ABFBF7802639CFFD00F6E54D /* ParserForEpub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserForEpub.swift; sourceTree = "<group>"; };
 		ABFBF7872639D25C00F6E54D /* TextRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRenderer.swift; sourceTree = "<group>"; };
 		ABFBF78A2639D27E00F6E54D /* BookRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRenderer.swift; sourceTree = "<group>"; };
+		ABFBF7A4263B04F900F6E54D /* TXTParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TXTParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +84,11 @@
 		AB21D8B52632F0FF009B5E02 /* ConvertingTextDataIntoAudioStream */ = {
 			isa = PBXGroup;
 			children = (
+				AB63AB04263C279A00A98A4F /* Storryboards */,
 				AB21D8CD2632F306009B5E02 /* Models */,
 				AB21D8CC2632F2D5009B5E02 /* Controllers */,
 				AB21D8CB2632F1D5009B5E02 /* Suporting files */,
 				AB21D8B82632F0FF009B5E02 /* SceneDelegate.swift */,
-				AB21D8BC2632F0FF009B5E02 /* Main.storyboard */,
 				AB21D8C42632F100009B5E02 /* Info.plist */,
 			);
 			path = ConvertingTextDataIntoAudioStream;
@@ -112,11 +120,23 @@
 			isa = PBXGroup;
 			children = (
 				ABFBF7742639A44800F6E54D /* SpeechSynthesizer.swift */,
-				ABFBF7802639CFFD00F6E54D /* ParserForEpub.swift */,
 				ABFBF7872639D25C00F6E54D /* TextRenderer.swift */,
+				ABFBF7A4263B04F900F6E54D /* TXTParser.swift */,
 				ABFBF78A2639D27E00F6E54D /* BookRenderer.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AB63AB04263C279A00A98A4F /* Storryboards */ = {
+			isa = PBXGroup;
+			children = (
+				AB21D8BC2632F0FF009B5E02 /* Main.storyboard */,
+				AB63AB05263C27E500A98A4F /* LibraryStoryboard.storyboard */,
+				AB63AB08263C281B00A98A4F /* ExtrasStoryboard.storyboard */,
+				AB63AB0B263C285100A98A4F /* PlayerStoryboard.storyboard */,
+				AB63AB0E263C2AA600A98A4F /* StartPageStoryboard.storyboard */,
+			);
+			path = Storryboards;
 			sourceTree = "<group>";
 		};
 		ABFBF77B2639CE4B00F6E54D /* Frameworks */ = {
@@ -143,6 +163,8 @@
 			dependencies = (
 			);
 			name = ConvertingTextDataIntoAudioStream;
+			packageProductDependencies = (
+			);
 			productName = ConvertingTextDataIntoAudioStream;
 			productReference = AB21D8B32632F0FF009B5E02 /* ConvertingTextDataIntoAudioStream.app */;
 			productType = "com.apple.product-type.application";
@@ -170,6 +192,8 @@
 				Base,
 			);
 			mainGroup = AB21D8AA2632F0FF009B5E02;
+			packageReferences = (
+			);
 			productRefGroup = AB21D8B42632F0FF009B5E02 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -185,6 +209,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB21D8C32632F100009B5E02 /* LaunchScreen.storyboard in Resources */,
+				AB63AB09263C281B00A98A4F /* ExtrasStoryboard.storyboard in Resources */,
+				AB63AB0C263C285100A98A4F /* PlayerStoryboard.storyboard in Resources */,
+				AB63AB06263C27E500A98A4F /* LibraryStoryboard.storyboard in Resources */,
+				AB63AB0F263C2AA600A98A4F /* StartPageStoryboard.storyboard in Resources */,
 				AB21D8C02632F100009B5E02 /* Assets.xcassets in Resources */,
 				AB21D8BE2632F0FF009B5E02 /* Main.storyboard in Resources */,
 			);
@@ -205,8 +233,8 @@
 				ABFBF758263843E800F6E54D /* StartPageController.swift in Sources */,
 				AB21D8B92632F0FF009B5E02 /* SceneDelegate.swift in Sources */,
 				ABFBF78B2639D27E00F6E54D /* BookRenderer.swift in Sources */,
-				ABFBF7812639CFFD00F6E54D /* ParserForEpub.swift in Sources */,
 				ABFBF75E2638504200F6E54D /* PlayerControler.swift in Sources */,
+				ABFBF7A5263B04F900F6E54D /* TXTParser.swift in Sources */,
 				ABFBF755263843BE00F6E54D /* LibraryController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
