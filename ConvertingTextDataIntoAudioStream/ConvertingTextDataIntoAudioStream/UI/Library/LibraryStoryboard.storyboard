@@ -45,12 +45,15 @@
                     <navigationItem key="navigationItem" title="Library" largeTitleDisplayMode="always" id="EfS-YQ-qrS">
                         <barButtonItem key="rightBarButtonItem" id="0Rn-F0-igf">
                             <imageReference key="image" image="plus" catalog="system" symbolScale="default"/>
+                            <connections>
+                                <action selector="importTapped:" destination="CFe-k2-RqD" id="Heu-Il-eyP"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7i-ku-JAS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262" y="-80"/>
+            <point key="canvasLocation" x="-262.31884057971018" y="-80.357142857142847"/>
         </scene>
         <!--PlayerStoryboard-->
         <scene sceneID="7rn-3X-BwW">
