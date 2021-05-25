@@ -18,6 +18,7 @@
 		AB63AB0F263C2AA600A98A4F /* StartPageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB63AB0E263C2AA600A98A4F /* StartPageStoryboard.storyboard */; };
 		AB848997264167EF00A17A33 /* SentenceBySentenceReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB848996264167EF00A17A33 /* SentenceBySentenceReader.swift */; };
 		AB84899D264547FC00A17A33 /* FileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB84899C264547FC00A17A33 /* FileImporter.swift */; };
+		AB8489A6264E84AB00A17A33 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8489A5264E84AB00A17A33 /* Settings.swift */; };
 		ABFBF755263843BE00F6E54D /* LibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF754263843BE00F6E54D /* LibraryController.swift */; };
 		ABFBF758263843E800F6E54D /* StartPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF757263843E800F6E54D /* StartPageController.swift */; };
 		ABFBF75B2638440C00F6E54D /* ExtrasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF75A2638440C00F6E54D /* ExtrasController.swift */; };
@@ -43,6 +44,7 @@
 		AB63AB0E263C2AA600A98A4F /* StartPageStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartPageStoryboard.storyboard; sourceTree = "<group>"; };
 		AB848996264167EF00A17A33 /* SentenceBySentenceReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceBySentenceReader.swift; sourceTree = "<group>"; };
 		AB84899C264547FC00A17A33 /* FileImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporter.swift; sourceTree = "<group>"; };
+		AB8489A5264E84AB00A17A33 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		ABFBF754263843BE00F6E54D /* LibraryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryController.swift; sourceTree = "<group>"; };
 		ABFBF757263843E800F6E54D /* StartPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageController.swift; sourceTree = "<group>"; };
 		ABFBF75A2638440C00F6E54D /* ExtrasController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtrasController.swift; sourceTree = "<group>"; };
@@ -111,9 +113,10 @@
 				ABFBF7742639A44800F6E54D /* SpeechSynthesizer.swift */,
 				ABFBF7872639D25C00F6E54D /* TextRenderer.swift */,
 				ABFBF7A4263B04F900F6E54D /* TXTParser.swift */,
-				AB848996264167EF00A17A33 /* SentenceBySentenceReader.swift */,
 				ABFBF78A2639D27E00F6E54D /* BookRenderer.swift */,
 				AB84899C264547FC00A17A33 /* FileImporter.swift */,
+				AB848996264167EF00A17A33 /* SentenceBySentenceReader.swift */,
+				AB8489A5264E84AB00A17A33 /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			files = (
 				AB21D8B72632F0FF009B5E02 /* AppDelegate.swift in Sources */,
 				ABFBF7752639A44800F6E54D /* SpeechSynthesizer.swift in Sources */,
+				AB8489A6264E84AB00A17A33 /* Settings.swift in Sources */,
 				AB848997264167EF00A17A33 /* SentenceBySentenceReader.swift in Sources */,
 				ABFBF7882639D25C00F6E54D /* TextRenderer.swift in Sources */,
 				ABFBF75B2638440C00F6E54D /* ExtrasController.swift in Sources */,
@@ -411,6 +415,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ConvertingTextDataIntoAudioStream/ConvertingTextDataIntoAudioStream.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D7BF3SY5ZC;
 				INFOPLIST_FILE = ConvertingTextDataIntoAudioStream/Info.plist;
@@ -420,6 +425,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.ConvertingTextDataIntoAudioStream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -431,6 +437,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ConvertingTextDataIntoAudioStream/ConvertingTextDataIntoAudioStream.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D7BF3SY5ZC;
 				INFOPLIST_FILE = ConvertingTextDataIntoAudioStream/Info.plist;
@@ -440,6 +447,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.ConvertingTextDataIntoAudioStream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

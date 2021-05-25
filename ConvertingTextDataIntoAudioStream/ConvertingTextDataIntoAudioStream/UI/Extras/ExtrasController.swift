@@ -6,11 +6,23 @@
 //
 
 import UIKit
-// rate!!!, pitchMultiplier!!!, postUtteranceDelay!!!, volume!!! language!!!
+
 class ExtrasController: UITableViewController {
     
+    let settings = Settings()
+    
+    let defaultsSettings = UserDefaults.standard
+    
+    @IBOutlet weak var volumeSlider: UISlider!
+    
+    @IBOutlet weak var rateSlider: UISlider!
+    
+    @IBOutlet weak var pitchSlider: UISlider!
+    
+    @IBOutlet weak var pausesSlider: UISlider!
+    
     @IBOutlet private weak var languageRateLabel: UILabel!
-    var dataLanguage: String = "Speech language"
+    var dataLanguage: String = "Language"
     
     @IBOutlet private weak var volumeLabel: UILabel!
     var dataVolume: String = "Speech volume"
@@ -24,8 +36,29 @@ class ExtrasController: UITableViewController {
     @IBOutlet private weak var postUtteranceDelayLabel: UILabel!
     var dataPostUtteranceDelay: String = "Pauses after speaking"
     
+    @IBAction func volumeChanged(_ sender: UISlider) {
+        settings.setVolumeValue(curentValue: sender.value)
+    }
+    
+    @IBAction func rateChanged(_ sender: UISlider) {
+        settings.setRateValue(curentValue: sender.value)
+    }
+    
+    @IBAction func pitchChanged(_ sender: UISlider) {
+        settings.setPitchMultiplierValue(curentValue: sender.value)
+    }
+    
+    @IBAction func pausesChenged(_ sender: UISlider) {
+        settings.setPostUtteranceDelayValue(curentValue: sender.value)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        volumeSlider.value = settings.getVolumeValue()
+        pausesSlider.value = Float(settings.getPostUtteranceDelayValue())
+        rateSlider.value = settings.getRateValue()
+        pitchSlider.value = settings.getPitchMultiplierValue()
         
         rateLabel.text = dataRate
         languageRateLabel.text = dataLanguage

@@ -15,7 +15,7 @@ class LibraryController: UIViewController {
     let sentenceBySentenceReader = SentenceBySentenceReader(allTextData: TXTParser().getTextData())
     
     @IBAction func importTapped(_ sender: Any) {
-        let supportedTypes: [UTType] = [UTType.text]
+        let supportedTypes: [UTType] = [.text]
         let pickerViewController = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes, asCopy: false)
         
         pickerViewController.delegate = self
@@ -28,6 +28,15 @@ class LibraryController: UIViewController {
 }
 extension LibraryController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        print("URLs: \(urls)")
+        var fileContent = " "
+        let fileUrl = urls[0]
+        do {
+            fileContent = try String(contentsOf: fileUrl, encoding: .utf8)
+        }
+        catch {
+            print("File is empty, or not exist")
+        }
+        print(fileContent)
+        print("URLs: \(urls[0])")
     }
 }

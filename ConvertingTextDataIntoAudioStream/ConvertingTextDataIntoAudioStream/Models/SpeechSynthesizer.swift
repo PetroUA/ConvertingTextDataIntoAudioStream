@@ -16,14 +16,21 @@ protocol SpeechSynthesizerDelegate: AnyObject {
 class SpeechSynthesizer: NSObject {
     let synth = AVSpeechSynthesizer()
     weak var delegate: SpeechSynthesizerDelegate?
+    let settings = Settings()
     
-    let rate: Float = AVSpeechUtteranceDefaultSpeechRate
-    let pitchMultiplier: Float = 0.8
-    let postUtteranceDelay = 0.2
-    let volume: Float = 0.8
+    var rate: Float
+    var pitchMultiplier: Float
+    var postUtteranceDelay: Double
+    var volume: Float
     let language = "en-GB"
     
     override init() {
+        self.rate = settings.getRateValue()
+        self.pitchMultiplier = settings.getPitchMultiplierValue()
+        self.postUtteranceDelay = settings.getPostUtteranceDelayValue()
+        self.volume = settings.getVolumeValue()
+        //self.language = settings.getLanguageValue()
+        
         super.init()
         synth.delegate = self
         setupAudioSession()
@@ -44,11 +51,10 @@ class SpeechSynthesizer: NSObject {
         utterance.pitchMultiplier = pitchMultiplier
         utterance.postUtteranceDelay = postUtteranceDelay
         utterance.volume = volume
-
+        
         let voice = AVSpeechSynthesisVoice(language: language)
         
         utterance.voice = voice
-        
         synth.speak(utterance)
         setupCommandCenter()
     }
@@ -62,7 +68,7 @@ class SpeechSynthesizer: NSObject {
     }
 
     func pauseSpeaking() {
-        synth.pauseSpeaking(at: AVSpeechBoundary.word)
+        synth.pauseSpeaking(at: AVSpeechBoundary.immediate)
     }
     
     private func setupAudioSession() {
@@ -77,12 +83,14 @@ class SpeechSynthesizer: NSObject {
     }
     
     private func setupCommandCenter() {
-        print("!!!!!!!!!!!!!!!!!")
         let commandCenter = MPRemoteCommandCenter.shared()
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle: "Something"]
 
         commandCenter.playCommand.isEnabled = true
         commandCenter.pauseCommand.isEnabled = true
+        //commandCenter.nextTrackCommand.isEnabled = true
+        //commandCenter.previousTrackCommand.isEnabled = true
+        
         commandCenter.playCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
             self?.continueSpeaking()
             return.success
@@ -90,7 +98,15 @@ class SpeechSynthesizer: NSObject {
         commandCenter.pauseCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
             self?.pauseSpeaking()
             return.success
+        }/*
+        commandCenter.nextTrackCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            self?.continueSpeaking()
+            return.success
         }
+        commandCenter.previousTrackCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
+            self?.continueSpeaking()
+            return.success
+        }*/
     }
     
     private func unwindeCommandCenter() {

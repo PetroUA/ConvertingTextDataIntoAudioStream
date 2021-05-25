@@ -30,8 +30,9 @@ class TXTParser {
             catch {
                 print("File is empty, or not exist")
             }
+            //print (fileURL)
         }
-        //print (textData!)
+        
         return textData!
     }
     
