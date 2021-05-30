@@ -1,69 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yJ4-hI-e4e">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Library-->
-        <scene sceneID="Zqy-s0-Wps">
+        <scene sceneID="XPj-v1-Mhy">
             <objects>
-                <viewController id="CFe-k2-RqD" customClass="LibraryController" customModule="ConvertingTextDataIntoAudioStream" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EUf-cg-ACt">
+                <collectionViewController id="fmS-CH-eBE" customClass="LibraryController" customModule="ConvertingTextDataIntoAudioStream" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="D2T-BH-8S2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xiv-dA-W6V">
-                                <rect key="frame" x="0.0" y="140" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ko8-0U-dOl">
-                                <rect key="frame" x="20" y="208" width="140" height="180"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="xpW-lJ-d2W">
-                                        <rect key="frame" x="37" y="66" width="67" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Book"/>
-                                        <connections>
-                                            <segue destination="9V5-79-6Oy" kind="show" id="EY4-Mb-uCz"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Kyo-m6-0EK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Library" largeTitleDisplayMode="always" id="EfS-YQ-qrS">
-                        <barButtonItem key="rightBarButtonItem" id="0Rn-F0-igf">
-                            <imageReference key="image" image="plus" catalog="system" symbolScale="default"/>
-                            <connections>
-                                <action selector="importTapped:" destination="CFe-k2-RqD" id="Heu-Il-eyP"/>
-                            </connections>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1ei-pT-JU6">
+                            <size key="itemSize" width="201" height="217"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="libraryBookCollectionViewCell" id="5oZ-Ly-nzA" customClass="LibraryBookCollectionViewCell" customModule="ConvertingTextDataIntoAudioStream" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="190" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="001-6T-6c8">
+                                    <rect key="frame" x="0.0" y="0.0" width="190" height="240"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfm-ut-t6H">
+                                            <rect key="frame" x="66.666666666666671" y="198" width="56.666666666666671" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ep2-LS-k0k">
+                                            <rect key="frame" x="0.0" y="0.3333333333333286" width="190" height="189.66666666666666"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="190" id="PTp-ck-SSk"/>
+                                                <constraint firstAttribute="width" constant="190" id="bqK-Dm-3uw"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-Xg-RlI">
+                                            <rect key="frame" x="150" y="206" width="19" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="ellipsis" catalog="system"/>
+                                            <connections>
+                                                <action selector="actionWithBookWithSender:" destination="5oZ-Ly-nzA" eventType="touchUpInside" id="t4j-1n-Ie4"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Hfm-ut-t6H" firstAttribute="centerX" secondItem="001-6T-6c8" secondAttribute="centerX" id="6VW-SR-t7q"/>
+                                        <constraint firstItem="Ep2-LS-k0k" firstAttribute="top" secondItem="001-6T-6c8" secondAttribute="top" id="8iV-uv-tan"/>
+                                        <constraint firstItem="Ep2-LS-k0k" firstAttribute="leading" secondItem="001-6T-6c8" secondAttribute="leading" id="BSz-dG-ovd"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ep2-LS-k0k" secondAttribute="trailing" id="I3U-4N-v5w"/>
+                                        <constraint firstItem="Hfm-ut-t6H" firstAttribute="top" secondItem="Ep2-LS-k0k" secondAttribute="bottom" constant="8" id="WoL-MM-SWm"/>
+                                        <constraint firstItem="Hfm-ut-t6H" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="001-6T-6c8" secondAttribute="leading" constant="8" id="jM2-5G-T90"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hfm-ut-t6H" secondAttribute="trailing" constant="8" id="nU0-yO-vbm"/>
+                                        <constraint firstAttribute="bottom" secondItem="Hfm-ut-t6H" secondAttribute="bottom" constant="8" id="qJA-Oa-gxA"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="190" height="240"/>
+                                <connections>
+                                    <outlet property="button" destination="vu6-Xg-RlI" id="GiH-Se-4xG"/>
+                                    <outlet property="coverImage" destination="Ep2-LS-k0k" id="M6M-9p-iVF"/>
+                                    <outlet property="label" destination="Hfm-ut-t6H" id="8C7-Vh-IYb"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="fmS-CH-eBE" id="gc5-F7-sr5"/>
+                            <outlet property="delegate" destination="fmS-CH-eBE" id="TD5-gq-CfZ"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Library" id="5Us-4t-Jge">
+                        <barButtonItem key="rightBarButtonItem" id="j7N-Qu-Kwf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7ZZ-6X-dkz">
+                                <rect key="frame" x="372.33333333333331" y="11" width="21.666666666666686" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="importTapped:" destination="fmS-CH-eBE" eventType="touchUpInside" id="dnZ-uV-B3i"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x7i-ku-JAS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fbd-cY-4hs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="465" y="-829"/>
-        </scene>
-        <!--PlayerStoryboard-->
-        <scene sceneID="7rn-3X-BwW">
-            <objects>
-                <viewControllerPlaceholder storyboardName="PlayerStoryboard" id="9V5-79-6Oy" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="hnp-P6-zaV"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3yD-BW-w22" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1033" y="-829"/>
+            <point key="canvasLocation" x="728.98550724637687" y="-419.19642857142856"/>
         </scene>
         <!--Library-->
         <scene sceneID="ayz-pA-U1W">
@@ -77,22 +108,21 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="CFe-k2-RqD" kind="relationship" relationship="rootViewController" id="TgM-H6-V4z"/>
+                        <segue destination="fmS-CH-eBE" kind="relationship" relationship="rootViewController" id="Xhn-5Q-zcm"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EGE-Rd-Qht" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262" y="-829"/>
+            <point key="canvasLocation" x="-42" y="-419"/>
         </scene>
     </scenes>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="102"/>
+        <image name="doc" catalog="system" width="115" height="128"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

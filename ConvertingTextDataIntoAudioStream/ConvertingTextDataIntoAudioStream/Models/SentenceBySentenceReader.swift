@@ -11,9 +11,8 @@ class SentenceBySentenceReader {
     let sentences: [String]
     var currentIndex = 0
     
-    init(allTextData: String) {
-        let separators = CharacterSet(charactersIn: ".!?")
-        sentences = allTextData.components(separatedBy: separators)
+    init(sentences: [String]) {
+        self.sentences = sentences
     }
     
     func getNextSentence() -> String? {

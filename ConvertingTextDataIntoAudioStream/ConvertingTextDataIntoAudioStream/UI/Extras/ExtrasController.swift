@@ -36,6 +36,15 @@ class ExtrasController: UITableViewController {
     @IBOutlet private weak var postUtteranceDelayLabel: UILabel!
     var dataPostUtteranceDelay: String = "Pauses after speaking"
     
+    @IBOutlet weak var textSize: UILabel!
+    var datatextSize: String = "Text size"
+    
+    @IBOutlet weak var textColor: UILabel!
+    var datatextColor: String = "Text color"
+    
+    @IBOutlet weak var backgroundColor: UILabel!
+    var databackgroundColor: String = "Background color"
+    
     @IBAction func volumeChanged(_ sender: UISlider) {
         settings.setVolumeValue(curentValue: sender.value)
     }
@@ -60,10 +69,14 @@ class ExtrasController: UITableViewController {
         rateSlider.value = settings.getRateValue()
         pitchSlider.value = settings.getPitchMultiplierValue()
         
+        
         rateLabel.text = dataRate
         languageRateLabel.text = dataLanguage
         pitchMultiplierLabel.text = dataPitchMultiplier
         postUtteranceDelayLabel.text = dataPostUtteranceDelay
         volumeLabel.text = dataVolume
+        textSize.text = datatextSize
+        textColor.text = datatextColor
+        backgroundColor.text = databackgroundColor
     }
 }

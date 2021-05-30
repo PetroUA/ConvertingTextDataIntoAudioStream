@@ -9,7 +9,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Ebr-XK-BcB">
             <objects>
-                <tabBarController id="9qH-BC-5IL" sceneMemberID="viewController">
+                <tabBarController id="9qH-BC-5IL" customClass="TabBarController" customModule="ConvertingTextDataIntoAudioStream" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u5M-OO-xQ7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
