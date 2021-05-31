@@ -1,5 +1,5 @@
 //
-//  LibraryController.swift
+//  LibraryViewController.swift
 //  ConvertingTextDataIntoAudioStream
 //
 //  Created by Petro on 27.04.2021.
@@ -7,7 +7,7 @@
 import UniformTypeIdentifiers
 import UIKit
 
-class LibraryController: UICollectionViewController {
+class LibraryViewController: UICollectionViewController {
     
     private let reuseIdentifier = "libraryBookCollectionViewCell"
     lazy var booksDataSourse = BooksDataSourse.default
@@ -44,7 +44,6 @@ class LibraryController: UICollectionViewController {
         
     }
     
-    
     @objc
     func reloadBooks() {
         books = booksDataSourse.getBooks()
@@ -66,19 +65,18 @@ class LibraryController: UICollectionViewController {
         libraryBookCollectionViewCell.delegate = self
         
         return libraryBookCollectionViewCell
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let curentBook: Book = books[indexPath.row]
         let storyboard = UIStoryboard(name: "BookDetailsStoryboard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "BookViewController") as? BookViewController
-        vc!.book = curentBook
-        self.present(vc!, animated: true)
+        let vc = storyboard.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
+        vc.book = curentBook
+        show(vc, sender: self)
     }
 }
 
-extension LibraryController: UIDocumentPickerDelegate {
+extension LibraryViewController: UIDocumentPickerDelegate {
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let origialURL = urls.first else {
@@ -94,15 +92,15 @@ extension LibraryController: UIDocumentPickerDelegate {
     }
 }
 
-extension LibraryController: LibraryBookCollectionViewCellDelegate {
+extension LibraryViewController: LibraryBookCollectionViewCellDelegate {
     func libraryBookCollectionViewCellDelegateDidTapActionButton(book: Book) {
         let alert = UIAlertController(title: "Action", message: "What to do?", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Play", style: UIAlertAction.Style.default, handler: {_ in
             let storyboard = UIStoryboard(name: "BookDetailsStoryboard", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "BookViewController") as? BookViewController
-            vc!.book = book
-            self.present(vc!, animated: true)
+            let vc = storyboard.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
+            vc.book = book
+            self.show(vc, sender: self)
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))

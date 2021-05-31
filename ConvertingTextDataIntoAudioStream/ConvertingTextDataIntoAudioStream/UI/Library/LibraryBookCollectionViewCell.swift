@@ -19,7 +19,6 @@ class LibraryBookCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var button: UIButton!
     
-    
     func configure(with book: Book) {
         self.book = book
         label.text = book.name

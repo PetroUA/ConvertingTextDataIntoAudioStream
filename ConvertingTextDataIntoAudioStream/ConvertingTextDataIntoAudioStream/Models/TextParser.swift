@@ -13,7 +13,7 @@ class TextParser {
         self.text = text
     }
     
-    func getRangForNextSentence(startingFrom: Int) -> (start: Int, end: Int)? {
+    func getRangeForNextSentence(startingFrom: Int) -> (start: Int, end: Int)? {
         guard startingFrom >= 0, startingFrom < text.count else {
             return nil
         }
@@ -55,7 +55,7 @@ class TextParser {
     
     var isNextSentence: Bool = false
     
-    func getRangForPreviousSentence(startingFrom: Int) -> (start: Int, end: Int)? {
+    func getRangeForPreviousSentence(startingFrom: Int) -> (start: Int, end: Int)? {
         guard startingFrom >= 0, startingFrom < text.count else {
             return nil
         }
@@ -97,7 +97,7 @@ class TextParser {
         }
         else {
             isNextSentence = true
-            return getRangForPreviousSentence(startingFrom: startOffset!)
+            return getRangeForPreviousSentence(startingFrom: startOffset!)
         }
         
         return nil

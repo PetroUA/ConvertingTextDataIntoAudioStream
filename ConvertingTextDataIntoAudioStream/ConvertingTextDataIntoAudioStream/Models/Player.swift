@@ -4,110 +4,85 @@
 //
 //  Created by Petro on 29.05.2021.
 //
-import AVFoundation
 import Foundation
+import AVFoundation
 import MediaPlayer
 
-class Player : NSObject {
+class Player {
     static let `default` = Player()
-    weak var delegate: PlayerDelegate?
     
-    let synth = AVSpeechSynthesizer()
-    var book: Book?
     lazy var booksDataSourse = BooksDataSourse.default
+    lazy var textSpeaker: TextSpeacker = {
+        let textSpeaker = TextSpeacker()
+        textSpeaker.delegate = self
+        return textSpeaker
+    } ()
     
-    let settings = Settings()
-    var rate: Float
-    var pitchMultiplier: Float
-    var postUtteranceDelay: Double
-    var volume: Float
-    let language: String = "en-GB"
-    var seperatedSentences: [String] = []
+    static let playerDidStartNotification: Notification.Name = Notification.Name("PlayerDidStartNotification")
+    static let playerDidFinishNotification: Notification.Name = Notification.Name("PlayerDidFinishNotification")
+    static let playerDidPauseNotification: Notification.Name = Notification.Name("PlayerDidPauseNotification")
+    static let playerDidContinueNotification: Notification.Name = Notification.Name("PlayerDidContinueNotification")
     
+    lazy var notifictionCenter = NotificationCenter.default
     
-    var isPlayMode = true
+    private var book: Book?
+    private var bookStorage: BookStorage?
+    private var parser: TextParser?
+    
     var origialSentences: String = ""
     var startSentenceIndex = 0
     var endSentencesIndex = 0
     
-    
-    override init() {
-        self.rate = settings.getRateValue()
-        self.pitchMultiplier = settings.getPitchMultiplierValue()
-        self.postUtteranceDelay = settings.getPostUtteranceDelayValue()
-        self.volume = settings.getVolumeValue()
-        //self.language = settings.getLanguageValue()
-        
-        super.init()
-        synth.delegate = self
-        setupAudioSession()
+    var isPaused: Bool {
+        return textSpeaker.isPaused
     }
+
+    private var shouldContnuePaying = false
+    private var isStartingPayback = false
+    private var isRewinding = false
     
-    private func setupAudioSession() {
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.playback)
-            try session.setActive(true)
-        }
-        catch {
-            print("setupAudioSession error=\(error)")
-        }
-        
-    }
+    //MARK: Publick interface
     
-    private func getOrigialSentences(){
-        booksDataSourse.getBookStorge(for: book!) { [weak self] (result) in
-            guard let self = self else {
-                return
-            }
-            switch result {
-            case .success(let bookStorage):
-                self.origialSentences = bookStorage.getOrigialSentences()
-            case .failure(let error):
-                print("Error\(error)")
-            }
-            
-            //let separators = CharacterSet(charactersIn: ".!?")
-            //return origialSentences.components(separatedBy: separators)
-        }
-    }
-    
-    private func startSpeak(book: Book) {
+    func startPlay(book: Book) {
         self.book = book
-        getOrigialSentences()
-        speakNextSentenceIfAvailable()
-    }
-    
-    private func stopSpeaking() {
-        synth.stopSpeaking(at: AVSpeechBoundary.immediate)
-    }
-    
-    private func continueSpeaking() {
-        synth.continueSpeaking()
-    }
-    
-    private func pauseSpeaking() {
-        synth.pauseSpeaking(at: AVSpeechBoundary.immediate)
-    }
-    
-    private func speak(textToSpeakText: String) {
-        if synth.isSpeaking {
-            stopSpeaking()
-        }
-        
-        let utterance = AVSpeechUtterance(string: seperatedSentences.first!)
-        
-        utterance.rate = rate
-        utterance.pitchMultiplier = pitchMultiplier
-        utterance.postUtteranceDelay = postUtteranceDelay
-        utterance.volume = volume
-        
-        let voice = AVSpeechSynthesisVoice(language: language)
-        
-        utterance.voice = voice
-        synth.speak(utterance)
+        shouldContnuePaying = true
+        isStartingPayback = true
+        loadBookStorageAndPlay()
         setupCommandCenter()
     }
+    
+    func stop() {
+        shouldContnuePaying = false
+        isStartingPayback = false
+        book = nil
+        nextSentenceOffset = nil
+        bookStorage = nil
+        textSpeaker.stop()
+    }
+    
+    func continuePlay() {
+        textSpeaker.continue()
+        notifictionCenter.post(Notification(name: Player.playerDidContinueNotification))
+    }
+    
+    func pause() {
+        textSpeaker.pause()
+        notifictionCenter.post(Notification(name: Player.playerDidPauseNotification))
+    }
+    
+    func rewindToNextSentence() {
+        isRewinding = true
+        textSpeaker.stop()
+        loadNextSentenceAndPlay()
+        isRewinding = false
+    }
+    
+    func rewindToPreviouseSentence() {
+        textSpeaker.stop()
+        loadPrevSentenceAndPlay()
+    }
+    
+    //MARK: - Command center logic
     
     private func setupCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()
@@ -117,14 +92,13 @@ class Player : NSObject {
         commandCenter.pauseCommand.isEnabled = true
         
         commandCenter.playCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
-            self?.continueSpeaking()
+            self?.continuePlay()
             return.success
         }
         commandCenter.pauseCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
-            self?.pauseSpeaking()
+            self?.pause()
             return.success
         }
-        
     }
     
     private func unwindeCommandCenter() {
@@ -133,124 +107,90 @@ class Player : NSObject {
         commandCenter.pauseCommand.removeTarget(self)
     }
     
-    private func getNextSentence(prevSentence: (start: Int, end: Int)) -> String? {
-        let parser = TextParser(text: origialSentences)
-        if prevSentence.end == 0 {
-            guard let sentence = parser.getRangForNextSentence(startingFrom: prevSentence.end) else {
-                print("No sentence")
-                return nil
+    //MARK: - Private logic
+    private var nextSentenceOffset: Int?
+    private func loadBookStorageAndPlay() {
+        guard let book = book else {
+            return
+        }
+        nextSentenceOffset = book.readingOffset
+        self.bookStorage = nil
+        booksDataSourse.getBookStorge(for: book) { [weak self] (result) in
+            guard let self = self else {
+                return
             }
-            let startIndex = origialSentences.index(origialSentences.startIndex, offsetBy: sentence.start)
-            let endIndex = origialSentences.index(origialSentences.startIndex, offsetBy: sentence.end)
-            let curentSentences = String(origialSentences[startIndex ... endIndex])
-            
-            return curentSentences
-        }
-        guard let sentence = parser.getRangForNextSentence(startingFrom: prevSentence.end + 1) else {
-            print("No sentence")
-            return nil
-        }
-        let startIndex = origialSentences.index(origialSentences.startIndex, offsetBy: sentence.start)
-        let endIndex = origialSentences.index(origialSentences.startIndex, offsetBy: sentence.end)
-        startSentenceIndex = sentence.start
-        endSentencesIndex = sentence.end
-        let curentSentences = String(origialSentences[startIndex ... endIndex])
-        startSentenceIndex = endSentencesIndex
-        return curentSentences
-    }
-    
-    
-    private func getPreviousSentence(prevSentence: (start: Int, end: Int)) -> String? {
-        let parser = TextParser(text: origialSentences)
-        if prevSentence.end == 0 {
-            guard let sentence = parser.getRangForPreviousSentence(startingFrom: prevSentence.end) else {
-                print("No sentence")
-                return nil
+            switch result {
+            case .success(let bookStorage):
+                self.bookStorage = bookStorage
+                self.parser = TextParser(text: bookStorage.getOrigialText())
+                self.loadNextSentenceAndPlay()
+            case .failure(let error):
+                print("Error\(error)")
             }
-            let firstSentencestart = sentence.start + 1
-            let startIndex = origialSentences.index(origialSentences.startIndex, offsetBy: firstSentencestart)
-            let endIndex = origialSentences.index(origialSentences.startIndex, offsetBy: sentence.end)
-            let curentSentences = String(origialSentences[startIndex ... endIndex])
-            
-            return curentSentences
-        }
-        guard let sentence = parser.getRangForPreviousSentence(startingFrom: prevSentence.end) else {
-            print("No sentence")
-            return nil
-        }
-        let startIndex = origialSentences.index(origialSentences.startIndex, offsetBy: sentence.start)
-        let endIndex = origialSentences.index(origialSentences.startIndex, offsetBy: sentence.end)
-        startSentenceIndex = sentence.start
-        endSentencesIndex = sentence.end
-        let curentSentences = String(origialSentences[startIndex ... endIndex])
-        startSentenceIndex = endSentencesIndex
-        return curentSentences
-    }
-    
-    private func speakNextSentenceIfAvailable() {
-        if let sentence = getNextSentence(prevSentence: (start: startSentenceIndex, end: endSentencesIndex)) {
-            stopSpeaking()
-            speak(textToSpeakText: sentence)
         }
     }
     
-    private func speakPreviousSentenceIfAvailable() {
-        if let sentence = getPreviousSentence(prevSentence: (start: startSentenceIndex, end: endSentencesIndex)) {
-            stopSpeaking()
-            speak(textToSpeakText: sentence)
+    private func loadNextSentenceAndPlay() {
+        guard let parser = parser,
+              let prevOffset = nextSentenceOffset,
+              let (sentenceStart, sentenceEnd) = parser.getRangeForNextSentence(startingFrom: prevOffset) else {
+            return
         }
+        
+        let text = parser.text
+        let startIndex = text.index(text.startIndex, offsetBy: sentenceStart)
+        let endIndex = text.index(text.startIndex, offsetBy: sentenceEnd)
+        let sentence = String(text[startIndex ... endIndex])
+        
+        nextSentenceOffset = sentenceEnd + 1
+        textSpeaker.speak(text: sentence)
     }
     
-    //MARK: Publick interface
-    
-    func startPlay(book: Book) {
-        startSpeak(book: book)
+    private func loadPrevSentenceAndPlay()  {
+        guard let parser = parser,
+              let prevOffset = nextSentenceOffset,
+              let (sentenceStart, sentenceEnd) = parser.getRangeForPreviousSentence(startingFrom: prevOffset) else {
+            return
+        }
+        
+        let text = parser.text
+        let startIndex = text.index(text.startIndex, offsetBy: sentenceStart)
+        let endIndex = text.index(text.startIndex, offsetBy: sentenceEnd)
+        let sentence = String(text[startIndex ... endIndex])
+        
+        nextSentenceOffset = sentenceEnd + 1
+        textSpeaker.speak(text: sentence)
     }
     
-    func stop() {
-        stopSpeaking()
+    private func onPlayerDidFinish() {
+        notifictionCenter.post(Notification(name: Player.playerDidFinishNotification))
+        unwindeCommandCenter()
     }
     
-    func continuePlay() {
-        continueSpeaking()
-    }
-    
-    func pause() {
-        pauseSpeaking()
-    }
-    
-    func nextSentence() {
-        speakNextSentenceIfAvailable()
-    }
-    
-    func previousSentence() {
-        speakPreviousSentenceIfAvailable()
-    }
-}
-protocol PlayerDelegate: AnyObject {
-    func playerDidFinish()
 }
 
-extension Player: AVSpeechSynthesizerDelegate {
-    func player(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        speakNextSentenceIfAvailable()
-        DispatchQueue.main.async {
-            self.delegate?.playerDidFinish()
+extension Player: TextSpeackerDelegate {
+    func textSpeackerDidFinishSpeaking() {
+        if !isRewinding, shouldContnuePaying {
+            booksDataSourse.updateReadingProgress(for: book!, progress: nextSentenceOffset!)
+            loadNextSentenceAndPlay()
+        } else {
+            onPlayerDidFinish()
         }
     }
     
-    func player(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        print("didStart")
+    func textSpeackerDidStartSpeaking() {
+        if isStartingPayback {
+            notifictionCenter.post(Notification(name: Player.playerDidStartNotification))
+        }
+        isStartingPayback = false
     }
     
-    func player(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
-        print("didPause")
+    func textSpeackerDidPauseSpeaking() {
+        notifictionCenter.post(Notification(name: Player.playerDidPauseNotification))
     }
     
-    func player(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
-        print("didContinue")
+    func textSpeackerDidContinueSpeaking() {
+        notifictionCenter.post(Notification(name: Player.playerDidContinueNotification))
     }
 }
-
-
-

@@ -74,7 +74,7 @@ class BooksDataSourse {
                                 name: book.name,
                                 sorageFileName: book.sorageFileName,
                                 coverImage: book.coverImage,
-                                progresIndentificator: book.progresIndentificator,
+                                readingOffset: progress,
                                 type: book.type)
                 } else {
                     return book
@@ -99,7 +99,7 @@ class BooksDataSourse {
                            name: originalFileName,
                            sorageFileName: fileNameToSave,
                            coverImage: nil,
-                           progresIndentificator: 0,
+                           readingOffset: 0,
                            type: bookType)
         
         self.books = getBooks() + [newBook]
@@ -148,50 +148,47 @@ class BooksDataSourse {
 }
 protocol BookStorage {
     func getCoverImageURL() -> URL?
-    func getOrigialSentences() -> String
+    func getOrigialText() -> String
 }
 
 class TextBookStorgare: BookStorage {
     let storageURL: URL
-    var origialSentences: String!
+    var origialText: String!
     
     
     init(storageURL: URL) throws {
         self.storageURL = storageURL
-        try loadSentences()
+        try loadText()
     }
     
-    private func loadSentences() throws {
-        origialSentences = try? String(contentsOf: storageURL, encoding: .utf8)
+    private func loadText() throws {
+        origialText = try? String(contentsOf: storageURL, encoding: .utf8)
 
     }
     
-    func getOrigialSentences() -> String {
-        return origialSentences
+    func getOrigialText() -> String {
+        return origialText
     }
     
     func getCoverImageURL() -> URL? {
         return nil
     }
 }
+
 class HtlmBookStorgare: BookStorage {
     let storageURL: URL
-    var origialSentences: String!
+    var origialText: String!
     
     init(storageURL: URL) throws {
         self.storageURL = storageURL
-    }
-    
-    private func loadSentences() {
-        
     }
     
     func loadSentencesIfNeeded() {
 
     }
     
-    func getOrigialSentences() -> String {
-        return origialSentences
+    func getOrigialText() -> String {
+        return origialText
     }
     
     

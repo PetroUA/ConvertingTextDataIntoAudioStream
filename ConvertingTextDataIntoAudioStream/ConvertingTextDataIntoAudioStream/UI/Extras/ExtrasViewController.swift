@@ -1,5 +1,5 @@
 //
-//  ExtrasController.swift
+//  ExtrasViewController.swift
 //  ConvertingTextDataIntoAudioStream
 //
 //  Created by Petro on 27.04.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExtrasController: UITableViewController {
+class ExtrasViewController: UITableViewController {
     
     let settings = Settings()
     

@@ -12,7 +12,7 @@
         <!--Library-->
         <scene sceneID="XPj-v1-Mhy">
             <objects>
-                <collectionViewController id="fmS-CH-eBE" customClass="LibraryController" customModule="ConvertingTextDataIntoAudioStream" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="fmS-CH-eBE" customClass="LibraryViewController" customModule="ConvertingTextDataIntoAudioStream" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="D2T-BH-8S2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfm-ut-t6H">
-                                            <rect key="frame" x="66.666666666666671" y="198" width="56.666666666666671" height="34"/>
+                                            <rect key="frame" x="66.666666666666671" y="198" width="57" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -45,9 +45,11 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-Xg-RlI">
-                                            <rect key="frame" x="150" y="206" width="19" height="22"/>
+                                            <rect key="frame" x="159" y="204" width="23" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="ellipsis" catalog="system"/>
+                                            <state key="normal" image="ellipsis" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                            </state>
                                             <connections>
                                                 <action selector="actionWithBookWithSender:" destination="5oZ-Ly-nzA" eventType="touchUpInside" id="t4j-1n-Ie4"/>
                                             </connections>

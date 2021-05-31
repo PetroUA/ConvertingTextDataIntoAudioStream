@@ -16,6 +16,6 @@ struct Book: Codable {
     let name: String
     let sorageFileName: String
     let coverImage: URL?
-    let progresIndentificator: Int
+    let readingOffset: Int
     let type: BookType
 }

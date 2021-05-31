@@ -10,16 +10,9 @@ import UIKit
 class BookViewController: UIViewController {
     
     lazy var booksDataSourse = BooksDataSourse.default
-//    lazy var synthesizer: SpeechSynthesizer = {
-//        let synthesizer = SpeechSynthesizer()
-//        synthesizer.delegate = self
-//        return synthesizer
-//    } ()
-//    lazy var sentenceBySentenceReader = SentenceBySentenceReader(sentences: sentences)
+    lazy var player = Player.default
     
     var book: Book!
-//    var sentences: [String]?
-//    var isPlayMode = true
     
     var bookDetailsViewController: BookDetailsViewController? {
         didSet {
@@ -43,40 +36,6 @@ class BookViewController: UIViewController {
     }
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-/*
-    func speakNextSentenceIfAvailable() {
-//        if let sentence = sentenceBySentenceReader.getNextSentence() {
-//            synthesizer.stopSpeaking()
-//            synthesizer.speak(textToSpeakText: sentence)
-//        }
-    }
-  
-    func speakPreviousSentenceIfAvailable() {
-//        if let sentence = sentenceBySentenceReader.getPreviousSentence() {
-//            synthesizer.stopSpeaking()
-//            synthesizer.speak(textToSpeakText: sentence)
-//        }
-    }
-*/
-//    @IBAction func nextSentenceButtonTapped(_ sender: Any) {
-//        speakNextSentenceIfAvailable()
-//    }
-//
-//    @IBAction func previousSentenceButtonTapped(_ sender: Any) {
-//        speakPreviousSentenceIfAvailable()
-//    }
-//
-//    @IBAction func PlayAndPauseButtonTapped(_ sender: Any) {
-//        if isPlayMode {
-//            playAndPauseButton.image = UIImage(systemName: "play.fill")
-//            synthesizer.pauseSpeaking()
-//            isPlayMode = false
-//        } else {
-//            playAndPauseButton.image = UIImage(systemName: "pause.fill")
-//            synthesizer.continueSpeaking()
-//            isPlayMode = true
-//        }
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,21 +50,11 @@ class BookViewController: UIViewController {
             switch result {
             case .success(let bookStorage):
                 self.show(bookStorage: bookStorage)
+                self.player.startPlay(book: self.book)
             case .failure(let error):
                 self.showLoadingError(error)
             }
         }
-        
-        
-//        let files = Files()
-//        textView.backgroundColor = UIColor.white
-//        textView.textColor = UIColor.black
-//        let size = 14
-//        textView.font = UIFont(name: "System", size: CGFloat(size))
-//
-//
-//        textView.text = files.getFileContent()
-//        speakNextSentenceIfAvailable()
     }
     
     private func showLoadingState() {
@@ -120,18 +69,14 @@ class BookViewController: UIViewController {
         let bookDetailsViewController = UIStoryboard(name: "BookDetailsStoryboard", bundle: nil).instantiateViewController(identifier: "BookDetailsViewController") as! BookDetailsViewController
         
         bookDetailsViewController.bookStorage = bookStorage
+        navigationItem.title = book.name
         self.bookDetailsViewController = bookDetailsViewController
     }
     
     private func showLoadingError(_ error: Error) {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
-//        let alerControler = UIAlertController(title: "Can't load book", message: <#T##String?#>, preferredStyle: <#T##UIAlertController.Style#>)
+        let alerControler = UIAlertController(title: "Can't load book", message: nil, preferredStyle: UIAlertController.Style.alert)
+        show(alerControler, sender: Any?.self)
     }
 }
-/*
-extension PlayerControler: SpeechSynthesizerDelegate {
-    func speechSynthesizerDidFinish() {
-        speakNextSentenceIfAvailable()
-    }
-}*/
