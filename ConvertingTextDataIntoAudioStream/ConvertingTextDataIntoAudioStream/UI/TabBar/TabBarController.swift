@@ -73,10 +73,26 @@ class TabBarController: UITabBarController {
     }
     
     private func showPlayerView() {
+        viewControllers?.forEach {
+            $0.additionalSafeAreaInsets = UIEdgeInsets(
+                top: 0,
+                left: 0,
+                bottom: playerView.frame.height,
+                right: 0
+            )
+        }
         playerView.isHidden = false
     }
     
     private func hidePlayerView() {
+        viewControllers?.forEach {
+            $0.additionalSafeAreaInsets = UIEdgeInsets(
+                top: 0,
+                left: 0,
+                bottom: 0,
+                right: 0
+            )
+        }
         playerView.isHidden = true
     }
     

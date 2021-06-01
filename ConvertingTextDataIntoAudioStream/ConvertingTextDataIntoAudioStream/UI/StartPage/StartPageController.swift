@@ -24,7 +24,7 @@ class StartPageController: UIViewController, UICollectionViewDataSource, UIColle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        getLastPlayedBook()
         notifictionCenter.addObserver(self, selector: #selector(getLastPlayedBook), name: Player.playerDidStartNotification, object: nil)
     }
     

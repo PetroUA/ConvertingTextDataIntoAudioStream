@@ -10,8 +10,15 @@ import UIKit
 class ExtrasViewController: UITableViewController {
     
     let settings = Settings()
-    
     let defaultsSettings = UserDefaults.standard
+    
+    let supportedLanguages = ["ar-SA", "cs-CZ", "da-DK", "de-DE", "el-GR" ,"en-AU", "en-GB", "en-IE", "en-IN", "en-US" ,"en-ZA", "es-ES", "es-MX", "fi-FI", "fr-CA" ,"fr-FR", "he-IL", "hi-IN", "hu-HU", "id-ID" ,"it-IT", "ja-JP", "ko-KR", "nl-NL", "no-NO" ,"pl-PL", "pt-BR", "pt-PT", "ro-RO", "ru-RU" ,"sk-SK", "sv-SE", "th-TH", "tr-TR", "zh-CN" ,"zh-HK", "zh-TW", "en-US"]
+    
+    let supportedTextSizes = ["1", "2"]
+    
+    //MARK: - Speech componets
+    
+    fileprivate let pickerView = UIPickerView()
     
     @IBOutlet weak var volumeSlider: UISlider!
     
@@ -21,29 +28,13 @@ class ExtrasViewController: UITableViewController {
     
     @IBOutlet weak var pausesSlider: UISlider!
     
-    @IBOutlet private weak var languageRateLabel: UILabel!
-    var dataLanguage: String = "Language"
+    @IBOutlet weak var languageTextField: UITextField!
     
-    @IBOutlet private weak var volumeLabel: UILabel!
-    var dataVolume: String = "Speech volume"
+    var languagePickerController: SettingsPickerViewController!
     
-    @IBOutlet private weak var rateLabel: UILabel!
-    var dataRate: String = "Speech rate"
+    @IBOutlet weak var textSizeTextField: UITextField!
     
-    @IBOutlet private weak var pitchMultiplierLabel: UILabel!
-    var dataPitchMultiplier: String = "Baseline pitch"
-    
-    @IBOutlet private weak var postUtteranceDelayLabel: UILabel!
-    var dataPostUtteranceDelay: String = "Pauses after speaking"
-    
-    @IBOutlet weak var textSize: UILabel!
-    var datatextSize: String = "Text size"
-    
-    @IBOutlet weak var textColor: UILabel!
-    var datatextColor: String = "Text color"
-    
-    @IBOutlet weak var backgroundColor: UILabel!
-    var databackgroundColor: String = "Background color"
+    var textSizePickerController: SettingsPickerViewController!
     
     @IBAction func volumeChanged(_ sender: UISlider) {
         settings.setVolumeValue(curentValue: sender.value)
@@ -60,23 +51,40 @@ class ExtrasViewController: UITableViewController {
     @IBAction func pausesChenged(_ sender: UISlider) {
         settings.setPostUtteranceDelayValue(curentValue: sender.value)
     }
+
+    //MARK: - About componets
+    @IBAction func AppInformationButtonTapped(_ sender: Any) {
+
+        let alert = UIAlertController(title: "App information", message: "This is app converting text data into audio stream.", preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alert, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        languagePickerController = SettingsPickerViewController(currentValue: settings.getLanguageValue(),
+                                                                data: supportedLanguages,
+                                                                textField: languageTextField,
+                                                                onValueSelected: { [weak self] (newValue) in
+                                                                    self?.settings.setLanguageValue(curentValue: newValue)
+                                                                })
+        
+        textSizePickerController = SettingsPickerViewController(currentValue: settings.getTextSize(),// why start always equal 0
+        data: supportedTextSizes,
+        textField: textSizeTextField,
+        onValueSelected: { [weak self] (newValue) in
+            self?.settings.setTextSize(curentValue: newValue)
+        })
         
         volumeSlider.value = settings.getVolumeValue()
         pausesSlider.value = Float(settings.getPostUtteranceDelayValue())
         rateSlider.value = settings.getRateValue()
         pitchSlider.value = settings.getPitchMultiplierValue()
         
-        
-        rateLabel.text = dataRate
-        languageRateLabel.text = dataLanguage
-        pitchMultiplierLabel.text = dataPitchMultiplier
-        postUtteranceDelayLabel.text = dataPostUtteranceDelay
-        volumeLabel.text = dataVolume
-        textSize.text = datatextSize
-        textColor.text = datatextColor
-        backgroundColor.text = databackgroundColor
     }
 }
+
+

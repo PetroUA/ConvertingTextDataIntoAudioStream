@@ -113,7 +113,6 @@ extension LibraryViewController: LibraryBookCollectionViewCellDelegate {
             self.present(deleteAlert, animated: true, completion: nil)
         }))
         
-        
         self.present(alert, animated: true, completion: nil)
     }
     

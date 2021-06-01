@@ -26,6 +26,8 @@
 		AB63AB0C263C285100A98A4F /* BookDetailsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB63AB0B263C285100A98A4F /* BookDetailsStoryboard.storyboard */; };
 		AB63AB0F263C2AA600A98A4F /* StartPageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB63AB0E263C2AA600A98A4F /* StartPageStoryboard.storyboard */; };
 		AB71D50C26640FF400799D33 /* TextSpeacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB71D50B26640FF400799D33 /* TextSpeacker.swift */; };
+		AB82CC2B26666A60008D93D7 /* SettingsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB82CC2A26666A60008D93D7 /* SettingsPickerView.swift */; };
+		AB82CC332666B5DD008D93D7 /* SettingsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB82CC322666B5DD008D93D7 /* SettingsPickerViewController.swift */; };
 		AB8489A6264E84AB00A17A33 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8489A5264E84AB00A17A33 /* Settings.swift */; };
 		ABB15B242665579E0053FDC1 /* StartPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB15B232665579E0053FDC1 /* StartPageCollectionViewCell.swift */; };
 		ABFBF755263843BE00F6E54D /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF754263843BE00F6E54D /* LibraryViewController.swift */; };
@@ -57,6 +59,8 @@
 		AB63AB0B263C285100A98A4F /* BookDetailsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookDetailsStoryboard.storyboard; sourceTree = "<group>"; };
 		AB63AB0E263C2AA600A98A4F /* StartPageStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StartPageStoryboard.storyboard; sourceTree = "<group>"; };
 		AB71D50B26640FF400799D33 /* TextSpeacker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSpeacker.swift; sourceTree = "<group>"; };
+		AB82CC2A26666A60008D93D7 /* SettingsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPickerView.swift; sourceTree = "<group>"; };
+		AB82CC322666B5DD008D93D7 /* SettingsPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPickerViewController.swift; sourceTree = "<group>"; };
 		AB8489A5264E84AB00A17A33 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		ABB15B232665579E0053FDC1 /* StartPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		ABFBF754263843BE00F6E54D /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 			children = (
 				ABFBF75A2638440C00F6E54D /* ExtrasViewController.swift */,
 				AB63AB08263C281B00A98A4F /* ExtrasStoryboard.storyboard */,
+				AB82CC322666B5DD008D93D7 /* SettingsPickerViewController.swift */,
+				AB82CC2A26666A60008D93D7 /* SettingsPickerView.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 				AB21D8B72632F0FF009B5E02 /* AppDelegate.swift in Sources */,
 				AB1603232662D37300647DE2 /* TextParser.swift in Sources */,
 				AB16030F26627D4000647DE2 /* TabBarController.swift in Sources */,
+				AB82CC2B26666A60008D93D7 /* SettingsPickerView.swift in Sources */,
 				AB1603042661270D00647DE2 /* BooksDataSourse.swift in Sources */,
 				AB8489A6264E84AB00A17A33 /* Settings.swift in Sources */,
 				ABFBF75B2638440C00F6E54D /* ExtrasViewController.swift in Sources */,
@@ -301,6 +308,7 @@
 				AB160301266123C600647DE2 /* Book.swift in Sources */,
 				ABFBF755263843BE00F6E54D /* LibraryViewController.swift in Sources */,
 				AB71D50C26640FF400799D33 /* TextSpeacker.swift in Sources */,
+				AB82CC332666B5DD008D93D7 /* SettingsPickerViewController.swift in Sources */,
 				AB16031B26628AC100647DE2 /* Player.swift in Sources */,
 				AB160314266283B600647DE2 /* PlayerView.swift in Sources */,
 				ABB15B242665579E0053FDC1 /* StartPageCollectionViewCell.swift in Sources */,

@@ -146,6 +146,7 @@ class BooksDataSourse {
     }
     
 }
+
 protocol BookStorage {
     func getCoverImageURL() -> URL?
     func getOrigialText() -> String

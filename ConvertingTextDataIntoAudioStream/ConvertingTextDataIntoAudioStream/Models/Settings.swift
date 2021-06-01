@@ -41,6 +41,13 @@ class Settings {
     func setPitchMultiplierValue(curentValue: Float) {
         defaultsSettings.set(curentValue, forKey: "pitchMultiplier")
     }
+    //MARK: Text setting
+    func getTextSize() -> String {
+        return defaultsSettings.string(forKey: "textSize") ?? "0"
+    }
     
+    func setTextSize(curentValue: String) {
+        defaultsSettings.set(curentValue, forKey: "textSize")
+    }
 }
 
