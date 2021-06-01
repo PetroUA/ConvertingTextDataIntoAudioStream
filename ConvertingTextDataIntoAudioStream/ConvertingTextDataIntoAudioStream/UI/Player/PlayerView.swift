@@ -30,6 +30,7 @@ class PlayerView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    @IBOutlet weak var bookName: UILabel!
     
     @IBOutlet var PlayAndPauseButton: UIButton!
     
@@ -61,12 +62,4 @@ class PlayerView: UIView {
             contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    /*
-    func show() {
-        self.isHidden = false
-    }
-    
-    func hide() {
-        self.isHidden = true
-    }*/
 }

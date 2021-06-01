@@ -15,7 +15,6 @@ class LibraryViewController: UICollectionViewController {
     
     var books: [Book] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

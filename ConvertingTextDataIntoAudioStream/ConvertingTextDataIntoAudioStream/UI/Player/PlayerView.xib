@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,53 +12,74 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerView" customModule="ConvertingTextDataIntoAudioStream" customModuleProvider="target">
             <connections>
                 <outlet property="PlayAndPauseButton" destination="aZ2-dD-Muh" id="kJr-3E-s8f"/>
+                <outlet property="bookName" destination="cwY-kJ-5IN" id="bOB-cg-yDq"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oqg-FJ-T3p">
-                    <rect key="frame" x="8" y="8" width="398" height="35"/>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="oqg-FJ-T3p">
+                    <rect key="frame" x="8" y="8" width="398" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwY-kJ-5IN">
-                            <rect key="frame" x="0.0" y="7.5" width="265.5" height="20.5"/>
+                            <rect key="frame" x="0.0" y="12" width="182" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGq-3P-vOh">
-                            <rect key="frame" x="273.5" y="6.5" width="31" height="22"/>
+                            <rect key="frame" x="196" y="2" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="CAy-hb-xWy"/>
+                                <constraint firstAttribute="height" constant="40" id="TVZ-Uj-hOF"/>
+                            </constraints>
                             <state key="normal" image="backward.fill" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                             </state>
                             <connections>
                                 <action selector="backwardButtonTapped:" destination="-1" eventType="touchUpInside" id="rWm-EU-Hfj"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZ2-dD-Muh">
-                            <rect key="frame" x="312.5" y="6.5" width="17" height="22"/>
+                            <rect key="frame" x="250" y="2" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Csa-70-cKA"/>
+                                <constraint firstAttribute="height" constant="40" id="rgE-2e-Pxj"/>
+                            </constraints>
                             <state key="normal" image="pause.fill" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                             </state>
                             <connections>
                                 <action selector="playAndPauseButtonTapped:" destination="-1" eventType="touchUpInside" id="h9K-eE-xNw"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-eb-K2K">
-                            <rect key="frame" x="337.5" y="6.5" width="21.5" height="22"/>
+                            <rect key="frame" x="304" y="2" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="CNi-EG-iyZ"/>
+                                <constraint firstAttribute="height" constant="40" id="IHd-au-kg6"/>
+                            </constraints>
                             <state key="normal" image="stop.fill" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                             </state>
                             <connections>
                                 <action selector="stopButtonTapped:" destination="-1" eventType="touchUpInside" id="6Mb-Q0-FdS"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ym7-he-Ejp">
-                            <rect key="frame" x="367" y="6.5" width="31" height="22"/>
-                            <state key="normal" image="forward.fill" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                            <rect key="frame" x="358" y="2" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="6Ud-Ab-yyh"/>
+                                <constraint firstAttribute="width" constant="40" id="r3Q-8C-rhA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <state key="normal">
+                                <imageReference key="image" image="forward.fill" catalog="system" symbolScale="large"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="large" weight="bold">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                </preferredSymbolConfiguration>
                             </state>
                             <connections>
                                 <action selector="forwardButtonTapped:" destination="-1" eventType="touchUpInside" id="r6U-nh-EW4"/>

@@ -53,6 +53,7 @@ class TabBarController: UITabBarController {
     
     @objc
     func onPlayerDidStart() {
+        playerView.bookName.text = player.book?.name
         showPlayerView()
     }
     
@@ -90,6 +91,7 @@ class TabBarController: UITabBarController {
 
 extension TabBarController: PlayerViewDelegate {
     func playerViewDelegatDidTapStopButton() {
+        hidePlayerView()
         player.stop()
     }
     

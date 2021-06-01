@@ -10,7 +10,7 @@ import MediaPlayer
 
 class Player {
     static let `default` = Player()
-    
+    let lastPlayedBook = UserDefaults.standard
     lazy var booksDataSourse = BooksDataSourse.default
     lazy var textSpeaker: TextSpeacker = {
         let textSpeaker = TextSpeacker()
@@ -25,7 +25,7 @@ class Player {
     
     lazy var notifictionCenter = NotificationCenter.default
     
-    private var book: Book?
+    private(set) var book: Book?
     private var bookStorage: BookStorage?
     private var parser: TextParser?
     
@@ -109,10 +109,20 @@ class Player {
     
     //MARK: - Private logic
     private var nextSentenceOffset: Int?
+    
+    private func saveLastPlayedBook(curentBook: Book) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(curentBook) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "lastPlayedBook")
+        }
+    }
+    
     private func loadBookStorageAndPlay() {
         guard let book = book else {
             return
         }
+        saveLastPlayedBook(curentBook: book)
         nextSentenceOffset = book.readingOffset
         self.bookStorage = nil
         booksDataSourse.getBookStorge(for: book) { [weak self] (result) in

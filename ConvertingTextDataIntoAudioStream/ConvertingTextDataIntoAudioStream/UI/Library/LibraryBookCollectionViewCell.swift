@@ -22,9 +22,7 @@ class LibraryBookCollectionViewCell: UICollectionViewCell {
     func configure(with book: Book) {
         self.book = book
         label.text = book.name
-        if book.coverImage == nil {
-            return
-        } else {
+        if book.coverImage != nil {
             let data = try! Data(contentsOf: book.coverImage!)
             self.coverImage.image = UIImage(data: data)
         }

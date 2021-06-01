@@ -48,7 +48,6 @@ class TextSpeacker: NSObject{
         
         utterance.voice = voice
         synthesizer.speak(utterance)
-        //setupCommandCenter()
     }
     
     public func pause() {
@@ -74,8 +73,6 @@ class TextSpeacker: NSObject{
         }
         
     }
-    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-     */
 }
 
 extension TextSpeacker: AVSpeechSynthesizerDelegate {
