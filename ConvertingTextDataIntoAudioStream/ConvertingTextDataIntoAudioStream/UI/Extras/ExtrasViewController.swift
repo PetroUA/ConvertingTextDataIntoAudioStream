@@ -14,7 +14,9 @@ class ExtrasViewController: UITableViewController {
     
     let supportedLanguages = ["ar-SA", "cs-CZ", "da-DK", "de-DE", "el-GR" ,"en-AU", "en-GB", "en-IE", "en-IN", "en-US" ,"en-ZA", "es-ES", "es-MX", "fi-FI", "fr-CA" ,"fr-FR", "he-IL", "hi-IN", "hu-HU", "id-ID" ,"it-IT", "ja-JP", "ko-KR", "nl-NL", "no-NO" ,"pl-PL", "pt-BR", "pt-PT", "ro-RO", "ru-RU" ,"sk-SK", "sv-SE", "th-TH", "tr-TR", "zh-CN" ,"zh-HK", "zh-TW", "en-US"]
     
-    let supportedTextSizes = ["1", "2"]
+    let supportedTextSizes = ["10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"]
+    
+    let supportedColors = ["Black", "White", "Red", "Yellow", "Gray", "Green", "Orange"]
     
     //MARK: - Speech componets
     
@@ -28,6 +30,7 @@ class ExtrasViewController: UITableViewController {
     
     @IBOutlet weak var pausesSlider: UISlider!
     
+    
     @IBOutlet weak var languageTextField: UITextField!
     
     var languagePickerController: SettingsPickerViewController!
@@ -35,6 +38,14 @@ class ExtrasViewController: UITableViewController {
     @IBOutlet weak var textSizeTextField: UITextField!
     
     var textSizePickerController: SettingsPickerViewController!
+    
+    @IBOutlet weak var textColorTextField: UITextField!
+    
+    var textColorPickerController: SettingsPickerViewController!
+    
+    @IBOutlet weak var backgroundColorTextField: UITextField!
+    
+    var backgroundColorPickerController: SettingsPickerViewController!
     
     @IBAction func volumeChanged(_ sender: UISlider) {
         settings.setVolumeValue(curentValue: sender.value)
@@ -72,17 +83,31 @@ class ExtrasViewController: UITableViewController {
                                                                     self?.settings.setLanguageValue(curentValue: newValue)
                                                                 })
         
-        textSizePickerController = SettingsPickerViewController(currentValue: settings.getTextSize(),// why start always equal 0
-        data: supportedTextSizes,
-        textField: textSizeTextField,
-        onValueSelected: { [weak self] (newValue) in
-            self?.settings.setTextSize(curentValue: newValue)
-        })
+        textSizePickerController = SettingsPickerViewController(currentValue: settings.getTextSize(),
+                                                                data: supportedTextSizes,
+                                                                textField: textSizeTextField,
+                                                                onValueSelected: { [weak self] (newValue) in
+                                                                    self?.settings.setTextSize(curentValue: newValue)
+                                                                })
         
-        volumeSlider.value = settings.getVolumeValue()
-        pausesSlider.value = Float(settings.getPostUtteranceDelayValue())
-        rateSlider.value = settings.getRateValue()
-        pitchSlider.value = settings.getPitchMultiplierValue()
+        textColorPickerController = SettingsPickerViewController(currentValue: settings.getTextColor(),
+                                                                data: supportedColors,
+                                                                textField: textColorTextField,
+                                                                onValueSelected: { [weak self] (newValue) in
+                                                                    self?.settings.setTextColor(curentValue: newValue)
+                                                                })
+        
+        backgroundColorPickerController = SettingsPickerViewController(currentValue:                    settings.getBackgroundColor(),
+                                                                       data: supportedColors,
+                                                                       textField: backgroundColorTextField,
+                                                                       onValueSelected: { [weak self] (newValue) in
+                                                                        self?.settings.setBackgroundColor(curentValue: newValue)
+                                                                       })
+        
+        volumeSlider.value = (settings.getVolumeValue() as NSString).floatValue
+        pausesSlider.value = (settings.getPostUtteranceDelayValue() as NSString).floatValue
+        rateSlider.value = (settings.getRateValue() as NSString).floatValue
+        pitchSlider.value = (settings.getPitchMultiplierValue() as NSString).floatValue
         
     }
 }

@@ -317,10 +317,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Extras" largeTitleDisplayMode="always" id="bIh-cV-s4Z"/>
                     <connections>
+                        <outlet property="backgroundColorTextField" destination="I0r-Lm-MfK" id="gHT-7D-vtX"/>
                         <outlet property="languageTextField" destination="m09-1d-u7n" id="iaf-tH-QOC"/>
                         <outlet property="pausesSlider" destination="IgP-Tn-Pua" id="Qh4-lg-U3j"/>
                         <outlet property="pitchSlider" destination="4YT-0X-hVH" id="UTI-Z2-Gaa"/>
                         <outlet property="rateSlider" destination="HV5-bu-EkO" id="5Fo-bg-Mhv"/>
+                        <outlet property="textColorTextField" destination="3jM-zD-9wK" id="ZN6-Fm-Nvq"/>
                         <outlet property="textSizeTextField" destination="dqP-c7-ght" id="q1f-CR-40B"/>
                         <outlet property="volumeSlider" destination="vaN-ex-FO5" id="42A-h2-8Sg"/>
                     </connections>

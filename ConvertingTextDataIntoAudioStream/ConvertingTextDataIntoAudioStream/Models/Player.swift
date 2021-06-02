@@ -10,7 +10,7 @@ import MediaPlayer
 
 class Player {
     static let `default` = Player()
-    let lastPlayedBook = UserDefaults.standard
+    let settings = Settings()
     lazy var booksDataSourse = BooksDataSourse.default
     lazy var textSpeaker: TextSpeacker = {
         let textSpeaker = TextSpeacker()
@@ -22,6 +22,8 @@ class Player {
     static let playerDidFinishNotification: Notification.Name = Notification.Name("PlayerDidFinishNotification")
     static let playerDidPauseNotification: Notification.Name = Notification.Name("PlayerDidPauseNotification")
     static let playerDidContinueNotification: Notification.Name = Notification.Name("PlayerDidContinueNotification")
+    static let playerDidStartSentenceNotification: Notification.Name = Notification.Name("PlayerDidStartSentenceNotification")
+    static let playerDidFinishSentenceNotification: Notification.Name = Notification.Name("PlayerDidFinishSentenceNotification")
     
     lazy var notifictionCenter = NotificationCenter.default
     
@@ -73,13 +75,17 @@ class Player {
     func rewindToNextSentence() {
         isRewinding = true
         textSpeaker.stop()
+        notifictionCenter.post(Notification(name: Player.playerDidFinishSentenceNotification))
         loadNextSentenceAndPlay()
         isRewinding = false
     }
     
     func rewindToPreviouseSentence() {
+        isRewinding = true
         textSpeaker.stop()
+        notifictionCenter.post(Notification(name: Player.playerDidFinishSentenceNotification))
         loadPrevSentenceAndPlay()
+        isRewinding = false
     }
     
     //MARK: - Command center logic
@@ -152,6 +158,10 @@ class Player {
         let endIndex = text.index(text.startIndex, offsetBy: sentenceEnd)
         let sentence = String(text[startIndex ... endIndex])
         
+        settings.setHighlightStartRange(curentValue: sentenceStart)
+        settings.setHighlightEndRange(curentValue: sentence.count)
+        notifictionCenter.post(Notification(name: Player.playerDidStartSentenceNotification))
+        
         nextSentenceOffset = sentenceEnd + 1
         textSpeaker.speak(text: sentence)
     }
@@ -168,6 +178,10 @@ class Player {
         let endIndex = text.index(text.startIndex, offsetBy: sentenceEnd)
         let sentence = String(text[startIndex ... endIndex])
         
+        settings.setHighlightStartRange(curentValue: sentenceStart)
+        settings.setHighlightEndRange(curentValue: sentence.count)
+        notifictionCenter.post(Notification(name: Player.playerDidStartSentenceNotification))
+        
         nextSentenceOffset = sentenceEnd + 1
         textSpeaker.speak(text: sentence)
     }
@@ -183,6 +197,7 @@ extension Player: TextSpeackerDelegate {
     func textSpeackerDidFinishSpeaking() {
         if !isRewinding, shouldContnuePaying {
             booksDataSourse.updateReadingProgress(for: book!, progress: nextSentenceOffset!)
+            notifictionCenter.post(Notification(name: Player.playerDidFinishSentenceNotification))
             loadNextSentenceAndPlay()
         } else {
             onPlayerDidFinish()

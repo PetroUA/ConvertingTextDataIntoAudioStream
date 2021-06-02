@@ -28,6 +28,7 @@
 		AB71D50C26640FF400799D33 /* TextSpeacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB71D50B26640FF400799D33 /* TextSpeacker.swift */; };
 		AB82CC2B26666A60008D93D7 /* SettingsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB82CC2A26666A60008D93D7 /* SettingsPickerView.swift */; };
 		AB82CC332666B5DD008D93D7 /* SettingsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB82CC322666B5DD008D93D7 /* SettingsPickerViewController.swift */; };
+		AB82CC3726676EC9008D93D7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB82CC3626676EC8008D93D7 /* Color.swift */; };
 		AB8489A6264E84AB00A17A33 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8489A5264E84AB00A17A33 /* Settings.swift */; };
 		ABB15B242665579E0053FDC1 /* StartPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB15B232665579E0053FDC1 /* StartPageCollectionViewCell.swift */; };
 		ABFBF755263843BE00F6E54D /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFBF754263843BE00F6E54D /* LibraryViewController.swift */; };
@@ -61,6 +62,7 @@
 		AB71D50B26640FF400799D33 /* TextSpeacker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSpeacker.swift; sourceTree = "<group>"; };
 		AB82CC2A26666A60008D93D7 /* SettingsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPickerView.swift; sourceTree = "<group>"; };
 		AB82CC322666B5DD008D93D7 /* SettingsPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPickerViewController.swift; sourceTree = "<group>"; };
+		AB82CC3626676EC8008D93D7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		AB8489A5264E84AB00A17A33 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		ABB15B232665579E0053FDC1 /* StartPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		ABFBF754263843BE00F6E54D /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				AB1603032661270D00647DE2 /* BooksDataSourse.swift */,
 				AB8489A5264E84AB00A17A33 /* Settings.swift */,
 				AB1603222662D37300647DE2 /* TextParser.swift */,
+				AB82CC3626676EC8008D93D7 /* Color.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				ABFBF75E2638504200F6E54D /* BookViewController.swift in Sources */,
 				AB1602FB265FEE7300647DE2 /* LibraryBookCollectionViewCell.swift in Sources */,
 				AB160301266123C600647DE2 /* Book.swift in Sources */,
+				AB82CC3726676EC9008D93D7 /* Color.swift in Sources */,
 				ABFBF755263843BE00F6E54D /* LibraryViewController.swift in Sources */,
 				AB71D50C26640FF400799D33 /* TextSpeacker.swift in Sources */,
 				AB82CC332666B5DD008D93D7 /* SettingsPickerViewController.swift in Sources */,

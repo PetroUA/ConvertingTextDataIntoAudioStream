@@ -11,7 +11,10 @@ class BookViewController: UIViewController {
     
     lazy var booksDataSourse = BooksDataSourse.default
     lazy var player = Player.default
-    
+    lazy var notifictionCenter = NotificationCenter.default
+    let settings = Settings()
+    let color = Color()
+    var attributedText: NSMutableAttributedString?
     var book: Book!
     
     var bookDetailsViewController: BookDetailsViewController? {
@@ -57,6 +60,19 @@ class BookViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        notifictionCenter.addObserver(self, selector: #selector(highlightTextRange), name: Player.playerDidStartSentenceNotification, object: nil)
+        notifictionCenter.addObserver(self, selector: #selector(unhighlightTextRange), name: Player.playerDidFinishSentenceNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        notifictionCenter.removeObserver(self)
+    }
+    
     private func showLoadingState() {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -71,6 +87,25 @@ class BookViewController: UIViewController {
         bookDetailsViewController.bookStorage = bookStorage
         navigationItem.title = book.name
         self.bookDetailsViewController = bookDetailsViewController
+        attributedText = NSMutableAttributedString(attributedString: bookDetailsViewController.textView.attributedText!)
+    }
+    
+    @objc private func highlightTextRange() {
+
+        let range: NSRange = NSMakeRange(settings.getHighlightStartRange(), settings.getHighlightEndRange())
+        attributedText!.addAttribute(NSAttributedString.Key.backgroundColor, value: UIColor.lightGray, range: range)
+        bookDetailsViewController!.textView.attributedText = attributedText
+        
+    }
+    
+    @objc private func unhighlightTextRange() {
+
+
+        let range: NSRange = NSMakeRange(settings.getHighlightStartRange(), settings.getHighlightEndRange())
+        
+        attributedText!.addAttribute(NSAttributedString.Key.backgroundColor, value: color.getUIColor(stringColor: settings.getBackgroundColor()), range: range)
+        
+        bookDetailsViewController!.textView.attributedText = attributedText
     }
     
     private func showLoadingError(_ error: Error) {

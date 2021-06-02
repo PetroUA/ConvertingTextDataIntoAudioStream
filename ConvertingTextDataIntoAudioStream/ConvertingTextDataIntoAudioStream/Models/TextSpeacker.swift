@@ -38,13 +38,12 @@ class TextSpeacker: NSObject{
     
     public func speak(text: String) {
         let utterance = AVSpeechUtterance(string: text)
-        utterance.rate = settings.getRateValue()
-        utterance.pitchMultiplier = settings.getPitchMultiplierValue()
-        utterance.postUtteranceDelay = settings.getPostUtteranceDelayValue()
-        utterance.volume = settings.getVolumeValue()
-        
-        //self.language = settings.getLanguageValue()
-        let voice = AVSpeechSynthesisVoice(language: "en-GB")
+        utterance.rate = (settings.getRateValue() as NSString).floatValue
+        utterance.pitchMultiplier = (settings.getPitchMultiplierValue() as NSString).floatValue
+        utterance.postUtteranceDelay = TimeInterval((settings.getPostUtteranceDelayValue() as NSString).floatValue)
+        utterance.volume = (settings.getVolumeValue() as NSString).floatValue
+
+        let voice = AVSpeechSynthesisVoice(language: settings.getLanguageValue())
         
         utterance.voice = voice
         synthesizer.speak(utterance)
